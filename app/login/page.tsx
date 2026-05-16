@@ -89,9 +89,9 @@ function LoginForm() {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           ¿No tienes cuenta?{' '}
-          <a href="/registro" className="font-medium hover:underline" style={{ color: PRIMARY }}>
+            <a href={`/registro?redirectTo=${redirectTo}`} className="font-medium hover:underline" style={{ color: PRIMARY }}>
             Regístrate
-          </a>
+            </a>
         </p>
       </div>
     </div>

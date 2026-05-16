@@ -3,13 +3,14 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase"
-import { LayoutDashboard, Package, Users, LogOut, ShieldCheck } from "lucide-react"
+import { LayoutDashboard, Package, Users, LogOut, ShieldCheck, Box } from "lucide-react"
 
 const ADMIN_BG = '#0f2430'
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/recogidas', label: 'Recogidas', icon: Package },
+  { href: '/admin/cajas', label: 'Solicitudes Cajas', icon: Box },
   { href: '/admin/usuarios', label: 'Usuarios', icon: Users },
 ]
 
@@ -61,7 +62,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <img
               src="https://static.wixstatic.com/media/dd39ed_659391c883094dfebe1cdbf6f2ea5ed8~mv2.png"
               alt="SaverioLab"
-              className="h-10 brightness-0 invert mb-2"
+              className="h-50 brightness-0 invert mb-2"
             />
           </Link>
           <div className="flex items-center gap-1.5 text-xs font-semibold text-amber-400">

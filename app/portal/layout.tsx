@@ -46,7 +46,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
           <img
             src="https://static.wixstatic.com/media/dd39ed_659391c883094dfebe1cdbf6f2ea5ed8~mv2.png"
             alt="SaverioLab"
-            className="h-10 brightness-0 invert"
+            className="h-50 brightness-0 invert"
           />
         </Link>
       </div>

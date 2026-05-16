@@ -75,7 +75,7 @@ export default function PortalDashboard() {
 
         {/* Kg reciclados */}
         <div className="rounded-xl p-6 text-white flex flex-col items-center justify-center text-center" style={{ backgroundColor: PRIMARY }}>
-          <div className="flex items-center gap-2 text-white/70 text-sm font-medium mb-5">
+          <div className="flex items-center gap-2 text-white/70 text-sm font-medium mb-6">
             <Recycle className="w-5 h-5" /> Total Reciclado
           </div>
           {loading ? (
@@ -85,7 +85,7 @@ export default function PortalDashboard() {
               {kgTotal.toFixed(1)} <span className="text-2xl text-white/70 font-medium">kg</span>
             </div>
           )}
-          <p className="text-white/70 text-sm mt-10">De material salvado del vertedero</p>
+          <p className="text-white/70 text-sm mt-8">De material salvado del vertedero</p>
         </div>
 
         {/* CTA recogida */}
@@ -110,7 +110,7 @@ export default function PortalDashboard() {
           </div>
           <p className="font-medium text-gray-700 mb-1">¿No tienes cajas en casa?</p>
           <p className="text-xs text-gray-400 mb-3">Te enviamos 5 cajas </p>
-          <p className="text-xs text-gray-400 mb-3"> (Coste: 2€ descuento acumulado)</p>
+          <p className="text-xs text-gray-400 mb-3"> (Coste: 5€ descuento acumulado)</p>
           <Link
             href="/portal/envios/cajas"
             className="flex items-center gap-2 text-white text-sm px-4 py-2 rounded-lg transition"

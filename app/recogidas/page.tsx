@@ -1,12 +1,21 @@
 'use client'
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, Recycle, Euro, Truck, ShieldCheck, Factory, Leaf } from "lucide-react"
 import Header from "@/components/Header"
+import { createClient } from "@/lib/supabase"
 
 const PRIMARY = '#1a3a4a'
 
 export default function RecogidasLandingPage() {
+  const [user, setUser] = useState<any>(null)
+  const supabase = createClient()
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setUser(data.user))
+  }, [])
+
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
       <Header showBack={true} scrollLogo={true} />
@@ -26,14 +35,20 @@ export default function RecogidasLandingPage() {
                 <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 mb-6">
                   Tus residuos de impresión 3D tienen valor.
                 </h1>
-                <p className="text-lg text-gray-500 text-justify leading-relaxed mb-8 leading-relaxed max-w-2xl mx-auto "> 
+                <p className="text-lg text-gray-500 text-justify leading-relaxed mb-8 max-w-2xl mx-auto">
                   En SaverioLab transformamos los restos de impresión en filamento reciclado de alta calidad.
                   Tus restos de PLA, PETG, ABS, etc. se convierten de nuevo en filamento 3D, creando una economía circular.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link href="/registro" className="flex items-center gap-2 px-6 py-3 rounded-lg text-base font-medium text-white transition" style={{ backgroundColor: PRIMARY }}>
-                    Comenzar a Reciclar <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  {user ? (
+                    <Link href="/portal" className="flex items-center gap-2 px-6 py-3 rounded-lg text-base font-medium text-white transition" style={{ backgroundColor: PRIMARY }}>
+                      Ir a mi portal <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  ) : (
+                    <Link href="/login?redirectTo=/portal" className="flex items-center gap-2 px-6 py-3 rounded-lg text-base font-medium text-white transition" style={{ backgroundColor: PRIMARY }}>
+                      Comenzar a Reciclar <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  )}
                   <a href="#como-funciona" className="px-6 py-3 rounded-lg text-base font-medium border border-gray-300 hover:bg-gray-50 transition">
                     Saber más
                   </a>
@@ -43,11 +58,11 @@ export default function RecogidasLandingPage() {
           </div>
         </section>
 
-       <section id="como-funciona" className="py-24 border-t text-white" style={{ backgroundColor: PRIMARY }}>
+        <section id="como-funciona" className="py-24 border-t text-white" style={{ backgroundColor: PRIMARY }}>
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4">¿Cómo funciona?</h2>
-              <p className="text-gray-500 max-w-2xl mx-auto">Un proceso técnico, limpio y transparente. Sin complicaciones.</p>
+              <h2 className="text-3xl font-bold mb-4 text-white">¿Cómo funciona?</h2>
+              <p className="text-white/60 max-w-2xl mx-auto">Un proceso técnico, limpio y transparente. Sin complicaciones.</p>
             </div>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
@@ -100,21 +115,27 @@ export default function RecogidasLandingPage() {
           <div className="max-w-2xl mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Únete a la iniciativa SaverioLab</h2>
             <p className="text-white/70 text-lg mb-8">Empieza a reciclar hoy mismo y dale una segunda vida a tus restos de impresión.</p>
-            <Link href="/registro" className="inline-block bg-white text-sm font-medium px-8 py-3 rounded-lg hover:bg-gray-100 transition" style={{ color: PRIMARY }}>
-              Crear mi cuenta gratis
-            </Link>
+            {user ? (
+              <Link href="/portal" className="inline-block bg-white text-sm font-medium px-8 py-3 rounded-lg hover:bg-gray-100 transition" style={{ color: PRIMARY }}>
+                Ir a mi portal
+              </Link>
+            ) : (
+              <Link href="/login?redirectTo=/portal" className="inline-block bg-white text-sm font-medium px-8 py-3 rounded-lg hover:bg-gray-100 transition" style={{ color: PRIMARY }}>
+                Crear mi cuenta gratis
+              </Link>
+            )}
           </div>
         </section>
       </main>
 
       <footer className="py-6 border-t text-center text-gray-400 text-xs">
-  <div className="flex justify-center gap-4 mb-2">
-    <Link href="/terminos" className="hover:text-gray-600">Términos</Link>
-    <Link href="/privacidad" className="hover:text-gray-600">Privacidad</Link>
-    <Link href="/cookies" className="hover:text-gray-600">Cookies</Link>
-  </div>
-  © {new Date().getFullYear()} SaverioLab. Todos los derechos reservados.
-</footer>
+        <div className="flex justify-center gap-4 mb-2">
+          <Link href="/terminos" className="hover:text-gray-600">Términos</Link>
+          <Link href="/privacidad" className="hover:text-gray-600">Privacidad</Link>
+          <Link href="/cookies" className="hover:text-gray-600">Cookies</Link>
+        </div>
+        © {new Date().getFullYear()} SaverioLab. Todos los derechos reservados.
+      </footer>
     </div>
   )
 }

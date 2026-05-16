@@ -219,9 +219,10 @@ export default function AdminUsuarioDetallePage() {
                         className="text-sm border border-gray-300 rounded-lg px-2 py-1 focus:outline-none"
                       >
                         <option value="pending">Pendiente</option>
-                        <option value="confirmed">Confirmada</option>
-                        <option value="collected">Recolectada</option>
-                        <option value="cancelled">Cancelada</option>
+<option value="confirmed">Confirmada</option>
+<option value="in_transit">En tránsito</option>
+<option value="collected">Entregada</option>
+<option value="cancelled">Cancelada</option>
                       </select>
                     </td>
                   </tr>

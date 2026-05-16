@@ -6,6 +6,8 @@ import Header from "@/components/Header"
 
 const PRIMARY = '#1a3a4a'
 
+const user = false
+
 export default function MisionPage() {
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
@@ -82,9 +84,15 @@ export default function MisionPage() {
           <div className="max-w-2xl mx-auto px-4">
             <h2 className="text-3xl font-bold mb-6">¿Te sumas al movimiento?</h2>
             <p className="text-white/70 text-lg mb-8">Únete a la comunidad SaverioLab y empieza a acumular descuentos excusivos para filamentos reciclados.</p>
-            <Link href="/registro" className="inline-block bg-white text-sm font-medium px-8 py-3 rounded-lg hover:bg-gray-100 transition" style={{ color: PRIMARY }}>
-              Empezar
-            </Link>
+            {user ? (
+              <Link href="/portal" className="inline-block bg-white text-sm font-medium px-8 py-3 rounded-lg hover:bg-gray-100 transition" style={{ color: PRIMARY }}>
+                Ir a mi portal
+              </Link>
+            ) : (
+              <Link href="/login?redirectTo=/portal" className="inline-block bg-white text-sm font-medium px-8 py-3 rounded-lg hover:bg-gray-100 transition" style={{ color: PRIMARY }}>
+                Ir a mi portal
+              </Link>
+            )}
           </div>
         </section>
       </main>

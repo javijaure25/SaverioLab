@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase'
 const supabase = createClient()
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function RegistroPage() {
   const [email, setEmail] = useState('')
@@ -15,6 +15,7 @@ export default function RegistroPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   async function handleRegistro(e: React.FormEvent) {
     e.preventDefault()
@@ -40,7 +41,9 @@ export default function RegistroPage() {
       }).eq('id', data.user.id)
     }
 
-    router.push('/portal')
+    const searchParams = useSearchParams()
+    const redirectTo = searchParams.get('redirectTo') || '/portal'
+    router.push(redirectTo)
   }
 
   return (

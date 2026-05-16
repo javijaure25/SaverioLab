@@ -6,13 +6,15 @@ import { useSearchParams } from "next/navigation"
 const statusColors: Record<string, string> = {
   pending: 'bg-yellow-100 text-yellow-700',
   confirmed: 'bg-blue-100 text-blue-700',
+  in_transit: 'bg-purple-100 text-purple-700',
   collected: 'bg-green-100 text-green-700',
   cancelled: 'bg-red-100 text-red-700',
 }
 const statusLabels: Record<string, string> = {
   pending: 'Pendiente',
   confirmed: 'Confirmada',
-  collected: 'Recolectada',
+  in_transit: 'En tránsito',
+  collected: 'Entregada',
   cancelled: 'Cancelada',
 }
 
@@ -55,7 +57,6 @@ function RecogidasContent() {
       }),
     })
   }
-
   load()
 }
 
@@ -70,10 +71,11 @@ function RecogidasContent() {
       <div className="flex gap-2 flex-wrap">
         {[
           { value: 'all', label: 'Todas' },
-          { value: 'pending', label: 'Pendientes' },
-          { value: 'confirmed', label: 'Confirmadas' },
-          { value: 'collected', label: 'Recolectadas' },
-          { value: 'cancelled', label: 'Canceladas' },
+{ value: 'pending', label: 'Pendientes' },
+{ value: 'confirmed', label: 'Confirmadas' },
+{ value: 'in_transit', label: 'En tránsito' },
+{ value: 'collected', label: 'Entregadas' },
+{ value: 'cancelled', label: 'Canceladas' },
         ].map(f => (
           <button
             key={f.value}
@@ -131,10 +133,11 @@ function RecogidasContent() {
                       onChange={e => updateStatus(r.id, e.target.value)}
                       className="text-sm border border-gray-300 rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-400"
                     >
-                      <option value="pending">Pendiente</option>
-                      <option value="confirmed">Confirmada</option>
-                      <option value="collected">Recolectada</option>
-                      <option value="cancelled">Cancelada</option>
+                     <option value="pending">Pendiente</option>
+                     <option value="confirmed">Confirmada</option>
+                     <option value="in_transit">En tránsito</option>
+                     <option value="collected">Entregada</option>
+                     <option value="cancelled">Cancelada</option>
                     </select>
                   </td>
                 </tr>

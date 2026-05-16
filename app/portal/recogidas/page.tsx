@@ -7,15 +7,17 @@ import { Package, Plus, Clock, Download } from "lucide-react"
 const PRIMARY = '#1a3a4a'
 
 const statusColors: Record<string, string> = {
-  pending: 'bg-gray-100 text-gray-700',
+  pending: 'bg-yellow-100 text-yellow-700',
   confirmed: 'bg-blue-100 text-blue-700',
+  in_transit: 'bg-purple-100 text-purple-700',
   collected: 'bg-green-100 text-green-700',
   cancelled: 'bg-red-100 text-red-700',
 }
 const statusLabels: Record<string, string> = {
   pending: 'Pendiente',
   confirmed: 'Confirmada',
-  collected: 'Recolectada',
+  in_transit: 'En tránsito',
+  collected: 'Entregada',
   cancelled: 'Cancelada',
 }
 

@@ -9,16 +9,16 @@ const PRIMARY = '#1a3a4a'
 const statusColors: Record<string, string> = {
   pending: 'bg-yellow-100 text-yellow-700',
   confirmed: 'bg-blue-100 text-blue-700',
+  in_transit: 'bg-purple-100 text-purple-700',
   collected: 'bg-green-100 text-green-700',
   cancelled: 'bg-red-100 text-red-700',
-  sent: 'bg-purple-100 text-purple-700',
 }
 const statusLabels: Record<string, string> = {
   pending: 'Pendiente',
   confirmed: 'Confirmada',
-  collected: 'Recolectada',
+  in_transit: 'En tránsito',
+  collected: 'Entregada',
   cancelled: 'Cancelada',
-  sent: 'Enviadas',
 }
 
 export default function EnviosPage() {
@@ -145,7 +145,7 @@ export default function EnviosPage() {
               <Box className="w-7 h-7" />
             </div>
             <p className="text-gray-700 font-semibold text-lg mb-1">Sin cajas solicitadas</p>
-            <p className="text-gray-400 text-sm max-w-xs mb-6">¿No tienes cajas para enviar tu material? Solicítalas aquí. Coste de gestión: 2€.</p>
+            <p className="text-gray-400 text-sm max-w-xs mb-6">¿No tienes cajas para enviar tu material? Solicítalas aquí. Coste de gestión: 5,00€.</p>
             <Link href="/portal/envios/cajas" className="text-white text-sm px-5 py-2 rounded-lg" style={{ backgroundColor: PRIMARY }}>
               Solicitar Cajas
             </Link>
@@ -164,7 +164,7 @@ export default function EnviosPage() {
                   <div className="text-sm text-gray-400 flex gap-4">
                     <span>{new Date(c.created_at).toLocaleDateString('es-ES')}</span>
                     <span><span className="text-gray-600 font-medium">5 cajas</span></span>
-                    <span className="text-red-500 font-medium">-2€ gestión</span>
+                    <span className="text-red-500 font-medium">-5,00 € gestión</span>
                   </div>
                   {c.direccion && <p className="text-sm text-gray-400 mt-1">📦 {c.direccion}</p>}
                 </div>
